@@ -8,5 +8,10 @@ https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/virtual-machine
 # How to use
 Once you have launched the scaleset. SSH onto an Instance through NAT port.
 To see that mongodb is running, you can run "sudo docker container ls" from bach shell.
-You can log into the mongo shell by running "sudo docker exec -it mongo bash". Then "mongo".
+You can log into the mongo shell by running "sudo docker exec -it mongo mongo".
+
+# Issues to resolve
+Need to reboot instance for all changes to take effect, example disabling transparent_hugepage/defrag.
+Inconsistent deploy results. Some issue with the custom extension, not always giving expected results.
+To try and troublshoot I have disabled Step1 in the extension bash script, but this needs to be resolved. Note Step 5 and 7 are disabled as well as they are not required in this example.
 
