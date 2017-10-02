@@ -7,7 +7,7 @@ https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/virtual-machine
 
 # How to use
 Once you have launched the scaleset. SSH onto an Instance through NAT port.
-To see that mongodb is running, you can run "sudo docker container ls" from bach shell.
+To see that mongodb is running, you can run "sudo docker container ls" from bash shell.
 You can log into the mongo shell by running "sudo docker exec -it mongo mongo".
 
 # Issues to resolve
