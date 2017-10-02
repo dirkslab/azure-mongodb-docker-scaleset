@@ -1,5 +1,6 @@
 # azure-mongodb-docker-scaleset
 Version 0.1: This example will launch a CentOS 7.3 scaleset with 2 x managed data disks, 2x NAT ports, mongodb inside a docker container with data folder mapped outside the container.
+MongoDB data gets mapped to /data_disk/mongodb as indicated when launching docker container -v /data_disk/mongodb/data:/data/db
 
 # Linux Scalset Extension Example
 Thanks for working v2 scalset linux extension example in link below.
