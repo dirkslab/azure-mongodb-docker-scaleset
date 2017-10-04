@@ -52,6 +52,7 @@
       }
     },
     "_artifactsLocation": {
+      "defaultValue": "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master",
       "type": "string",
       "metadata": {
         "description": "Auto-generated container in staging storage account to receive post-build staging folder upload"
@@ -98,9 +99,9 @@
     "subnetPrefix": "10.0.0.0/24",
     "vhdContainerName": "[concat(variables('namingInfix'), 'vhd')]",
     "virtualNetworkName": "[concat(variables('namingInfix'), 'vnet')]",
-    "mongoextensionScriptFolder": "https://raw.githubusercontent.com/dirkslab/azure-mongodb-replicaset/master",
-    "fileUris": [ "https://raw.githubusercontent.com/dirkslab/azure-mongodb-replicaset/master/mongodb-repl-setup-docker.sh" ],
-    "mongoextensionScriptFileName": "mongodb-repl-setup-docker.sh"
+    "mongoextensionScriptFolder": "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master",
+    "fileUris": [ "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master/scripts/mongodb-repl-setup-docker.sh" ],
+    "mongoextensionScriptFileName": "entrypointscript.sh"
   },
   "resources": [
     {
@@ -274,15 +275,17 @@
           "extensionProfile": {
             "extensions": [
               {
-                "name": "mongoextension",
+                "name": "linuxscaleextension",
                 "properties": {
-                  "publisher": "Microsoft.OSTCExtensions",
-                  "type": "CustomScriptForLinux",
-                  "typeHandlerVersion": "1.5",
+                  "publisher": "Microsoft.Azure.Extensions",
+                  "type": "CustomScript",
+                  "typeHandlerVersion": "2.0",
                   "autoUpgradeMinorVersion": true,
                   "settings": {
                     "fileUris": [
-                      "https://raw.githubusercontent.com/dirkslab/azure-mongodb-replicaset/master/mongodb-repl-setup-docker.sh"
+                      "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master/scripts/centosdatadiskprep.sh",
+                      "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master/scripts/centosfinetune.sh",
+                      "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master/scripts/mongodbdocker.sh"
                     ],
                     "commandToExecute": "[concat('sh ', variables('mongoextensionScriptFileName'))]"
                   }
