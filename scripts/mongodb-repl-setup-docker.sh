@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 # Pre-requisites
 # Install linux vm with attached data disks
