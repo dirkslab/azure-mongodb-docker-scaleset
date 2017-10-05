@@ -101,7 +101,7 @@
     "virtualNetworkName": "[concat(variables('namingInfix'), 'vnet')]",
     "mongoextensionScriptFolder": "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master",
     "fileUris": [ "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master/scripts/mongodb-repl-setup-docker.sh" ],
-    "mongoextensionScriptFileName": "entrypointscript.sh"
+    "mongoextensionScriptFileName": "mongodb-repl-setup-docker.sh"
   },
   "resources": [
     {
@@ -283,9 +283,7 @@
                   "autoUpgradeMinorVersion": true,
                   "settings": {
                     "fileUris": [
-                      "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master/scripts/centosdatadiskprep.sh",
-                      "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master/scripts/centosfinetune.sh",
-                      "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master/scripts/mongodbdocker.sh"
+                      "https://raw.githubusercontent.com/dirkslab/azure-mongodb-docker-scaleset/master/scripts/mongodb-repl-setup-docker.sh"
                     ],
                     "commandToExecute": "[concat('sh ', variables('mongoextensionScriptFileName'))]"
                   }
