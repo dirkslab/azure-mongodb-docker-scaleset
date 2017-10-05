@@ -4,7 +4,7 @@
 # Install linux vm with attached data disks
 # Script based on 4x Data disks
 
-#sleep 120s
+sleep 120s
 
 Install_step1()
 {
@@ -428,7 +428,7 @@ Install_step2a #depends on Install_step2
 Install_step3
 Install_step4
 #Install_step5
-##Install_step6
+#Install_step6
 #Install_step7
-##Install_step8
+#Install_step8
 #Install_step1
