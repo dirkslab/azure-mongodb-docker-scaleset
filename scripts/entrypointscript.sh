@@ -4,7 +4,7 @@
 ./centosdatadiskprep.sh
 
 ##Script2
-./centosfinetune.sh
+#./centosfinetune.sh
 
 ##Script3
-./mongodbdocker.sh
+#./mongodbdocker.sh
