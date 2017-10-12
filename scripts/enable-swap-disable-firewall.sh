@@ -9,11 +9,17 @@
 Install_step1()
 {
 # Enable swap file on the linux machine through azure agent file waagent.conf and disable selinux using the ex search replace editor
+until [ -f /etc/waagent.conf ]
+do
+sleep 1
+done
 
-ex -s +%s/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g +%p +x /etc/waagent.conf
-ex -s +%s/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=5120/g +%p +x /etc/waagent.conf
-ex -s +%s/SELINUX=enforcing/SELINUX=disabled/g +%p +x /etc/selinux/config
-echo 0 > /selinux/enforce
+# Enable swap file on the linux machine through azure agent file waagent.conf and disable selinux using the ex search replace editor
+sed -i:bak 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/' /etc/waagent.conf
+sed -i:bak 's/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=5120/' /etc/waagent.conf
+sed -i:bak 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+setenforce 0
+
 }
 
 Install_step2()
