@@ -9,12 +9,6 @@
 Install_step1()
 {
 # Enable swap file on the linux machine through azure agent file waagent.conf and disable selinux using the ex search replace editor
-until [ -f /etc/waagent.conf ]
-do
-sleep 1
-done
-
-# Enable swap file on the linux machine through azure agent file waagent.conf and disable selinux using the ex search replace editor
 sed -i:bak 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/' /etc/waagent.conf
 sed -i:bak 's/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=5120/' /etc/waagent.conf
 sed -i:bak 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
@@ -47,7 +41,7 @@ chmod 755 /data_disk
 
 Install_step2a()
 {
-hdd=$(find /dev/sd* ! -path "/dev/sda*" ! -path "/dev/sdb*")
+hdd=$(ls /dev/sd* | sed "s/[0-9]//g" | uniq -u)
 #hdd=$(find /dev/sd* ! -path "/dev/sda*")
 #if [[ $hdd == *1* ]] && echo "It's there" || echo "Couldn't find"
 [[ $hdd == *1* ]] && echo "Cannot use. It contains existing partition!" 1>&2 >./mdadm.log || Install_step2
@@ -56,10 +50,10 @@ hdd=$(find /dev/sd* ! -path "/dev/sda*" ! -path "/dev/sdb*")
 Install_step3()
 {
 #count available devicees to raid
-devicecount=$(find /dev/sd*1 ! -path "/dev/sda*" ! -path "/dev/sdb*" | wc -l)
+devicecount=$(ls $hdd | wc -l)
 
 #list available devices to raid
-raiddevices=$(find /dev/sd*1 ! -path "/dev/sda*" ! -path "/dev/sdb*")
+raiddevices=$(for i in $hdd;do find $i*1; done)
 
 # install mdam
 
