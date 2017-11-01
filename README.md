@@ -13,4 +13,3 @@ You can log into the mongo shell by running "sudo docker exec -it mongo mongo".
 
 # Issues to resolve
 Need to reboot instance for all changes to take effect, example disabling transparent_hugepage/defrag.
-Inconsistent deploy results.
